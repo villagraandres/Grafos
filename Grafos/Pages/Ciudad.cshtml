@@ -1,0 +1,26 @@
+﻿@page
+@model Grafos.Pages.CiudadModel
+@{
+}
+
+
+<h1>Cities</h1>
+
+
+<form method="post">
+	
+	<div>	
+		<label>Nombre:</label>
+		<input asp-for="NuevaCiudad.Nombre"/>
+	</div>
+	<div>
+		<label>Poblacion:</label>
+		<input asp-for="NuevaCiudad.Nombre" type="number" />
+	</div>
+	<div>
+		<label>Latitud:</label>
+		<input asp-for="NuevaCiudad.Nombre" type="number" />
+	</div>
+
+	<button type="submit">Submit</button>
+</form>
