@@ -1,4 +1,6 @@
-﻿@page
+﻿
+@page
+@using System.Linq
 @model Grafos.Pages.PaisModel
 @{
 }
@@ -16,4 +18,36 @@
 	
 	<button type="submit">Submit</button>
 </form>
+
+
+<hr/>
+
+@if (Model.ListaPaises != null && Model.ListaPaises.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pais in Model.ListaPaises)
+            {
+                <tr>
+                    <td>@pais.PaisId</td>
+                    <td>@pais.Nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay países para mostrar.</p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 

@@ -22,5 +22,43 @@
 		<input asp-for="NuevaCiudad.Nombre" type="number" />
 	</div>
 
+	<div class="form-group">
+		<label asp-for="NuevaCiudad.PaisId">País</label>
+		<select asp-for="NuevaCiudad.PaisId" asp-items="Model.PaisesSelect" class="form-select">
+			<option value="">-- Seleccione un país --</option>
+		</select>
+		<span asp-validation-for="NuevaCiudad.PaisId" class="text-danger"></span>
+	</div>
+
+
+
 	<button type="submit">Submit</button>
 </form>
+
+
+
+@if (Model.ListaCiudades != null && Model.ListaCiudades.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var ciudad in Model.ListaCiudades)
+			{
+				<tr>
+					<td>@ciudad.PaisId</td>
+					<td>@ciudad.Nombre</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>No hay países para mostrar.</p>
+}
+

@@ -1,0 +1,57 @@
+@page
+@model Grafos.Pages.TipoCarreteraModel
+@{
+}
+
+<h1>Tipos de Carretera</h1>
+
+<form method="post" class="mb-4">
+    <div class="mb-3">
+        <label asp-for="NuevaTipo.Nombre" class="form-label">Nombre</label>
+        <input asp-for="NuevaTipo.Nombre" class="form-control" />
+        <span asp-validation-for="NuevaTipo.Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NuevaTipo.VelocidadMaxima" class="form-label">Velocidad máxima (km/h)</label>
+        <input asp-for="NuevaTipo.VelocidadMaxima" class="form-control" type="number" step="0.1" />
+        <span asp-validation-for="NuevaTipo.VelocidadMaxima" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NuevaTipo.CostoPeajeKm" class="form-label">Costo peaje por km</label>
+        <input asp-for="NuevaTipo.CostoPeajeKm" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="NuevaTipo.CostoPeajeKm" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar tipo</button>
+</form>
+
+@if (Model.ListaTipos != null && Model.ListaTipos.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Velocidad máxima</th>
+                <th>Costo peaje/km</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tipo in Model.ListaTipos)
+            {
+                <tr>
+                    <td>@tipo.TipoCarreteraId</td>
+                    <td>@tipo.Nombre</td>
+                    <td>@tipo.VelocidadMaxima</td>
+                    <td>@tipo.CostoPeajeKm</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

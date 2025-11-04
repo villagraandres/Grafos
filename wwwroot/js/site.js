@@ -1,10 +1,13 @@
-ï»¿(function () {
+// site.js - construye grafo si existe #graph-container en la página
+(function () {
     const container = document.getElementById('graph-container');
-    if (!container) return; 
+    if (!container) return; // no ejecutar en páginas que no tengan el contenedor
 
+    // Asegurar que vis esté disponible
     function loadGraph(data) {
         if (typeof vis === 'undefined') {
-            container.innerHTML = '<p class="text-danger">La librerÃ­a de grafo no estÃ¡ disponible.</p>';
+            console.error('vis-network no está cargado. Asegúrate de incluirlo antes de site.js en la página de grafo.');
+            container.innerHTML = '<p class="text-danger">La librería de grafo no está disponible.</p>';
             return;
         }
 
@@ -23,6 +26,7 @@
         });
     }
 
+    // Fetch al handler que devuelve nodos y edges
     fetch('/Carreteras?handler=Graph')
         .then(res => {
             if (!res.ok) throw new Error('Network response was not ok');
